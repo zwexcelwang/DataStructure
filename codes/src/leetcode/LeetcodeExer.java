@@ -1,36 +1,83 @@
 package leetcode;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class LeetcodeExer {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//System.out.println(strStr("hello","ll"));
-		//countAndSay(10);
-		//System.out.print(nextCount("111223"));
-		System.out.println(divide(-2147483648, 1));
+		LRUCache lruCache  = new LRUCache(3);
+		lruCache.put(1,1);
+		System.out.println("content" + lruCache.content);
+		System.out.println("lru" + lruCache.lru);
+		lruCache.put(2,2);
+		System.out.println("content" + lruCache.content);
+		System.out.println("lru" + lruCache.lru);
+		lruCache.put(3,3);
+		System.out.println("content" + lruCache.content);
+		System.out.println("lru" + lruCache.lru);
+		lruCache.put(4,4);
+		System.out.println("content" + lruCache.content);
+		System.out.println("lru" + lruCache.lru);
 	}
-	
-	
-	//System.out.println(strStr("hello","ll"));
-	    public static int strStr(String haystack, String needle) {
-	        char[] haystacks = haystack.toCharArray();
-	        char[] needles = needle.toCharArray();   
-	        for(int i=0; i<=haystacks.length-needles.length; i++){
-	            if(haystacks[i] == needles[0]){
-	                int num = 1;
-	                for(int j=1; j<needles.length; j++){
-	                    if(haystacks[i+j] == needles[j]){
-	                        num++;
-	                    }
-	                }
-	                if(num == needles.length){
-	                    return i;
-	                }
-	            }
-	        }
-	        return -1;
-	    }
+
+
+	static class LRUCache {
+		Map<Integer, Integer> lru;
+		Map<Integer, Integer> content;
+		int time;
+		public LRUCache(int capacity) {
+			lru = new HashMap<>();
+			content = new HashMap<>();
+			time = capacity;
+		}
+
+		public int get(int key) {
+			int res = content.getOrDefault(key, -1);
+			if(res != -1) {
+				for(Map.Entry<Integer, Integer> entry : lru.entrySet()){
+					if(key != entry.getKey()) {
+						lru.put(entry.getKey(), entry.getValue()-1);
+					}else {
+						lru.put(entry.getKey(), time);
+					}
+				}
+			}
+			return res;
+		}
+
+		public void put(int key, int value) {
+			int res = content.getOrDefault(key, -1);
+			if(res!= -1){
+				for(Map.Entry<Integer, Integer> entry : lru.entrySet()){
+					lru.put(entry.getKey(), entry.getValue()-1);
+				}
+			}else if(content.size() == time) {
+				int min = time;
+				int minKey = 0;
+				for(Map.Entry<Integer, Integer> entry : lru.entrySet()){
+					if(entry.getValue() <= min) {
+						min = entry.getValue();
+						minKey = entry.getKey();
+					}
+					lru.put(entry.getKey(), entry.getValue()-1);
+				}
+				content.remove(minKey);
+				lru.remove(minKey);
+			}
+			content.put(key, value);
+			lru.put(key, time);
+		}
+	}
+
+	/**
+	 * Your LRUCache object will be instantiated and called as such:
+	 * LRUCache obj = new LRUCache(capacity);
+	 * int param_1 = obj.get(key);
+	 * obj.put(key,value);
+	 */
 
 
 
