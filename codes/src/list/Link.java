@@ -10,9 +10,6 @@ public class Link {
 	public Link(Link nextval){
 		next = nextval;
 	}
-	public Link(){
-		
-	}
 	public Link next() {
 		return next;
 	}

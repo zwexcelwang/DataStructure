@@ -53,6 +53,7 @@ public class LinkList implements IList{
 		if(!isInList()) {
 			return null;
 		}else {
+			//删的是curr.next()
 			Object item = curr.next().element();
 			if(tail == curr.next()) {
 				tail = curr;
@@ -85,6 +86,7 @@ public class LinkList implements IList{
 			return;
 		}
 		Link temp = head;
+		//找它前面那个
 		while(temp != null && temp.next() != curr) {
 			temp = temp.next();
 		}
@@ -95,6 +97,7 @@ public class LinkList implements IList{
 	public int length() {
 		// TODO Auto-generated method stub
 		int count = 0;
+		//head不存数据，不算
 		for(Link temp = head.next(); temp != null; temp = temp.next()) {
 			count++;
 		}
@@ -121,12 +124,14 @@ public class LinkList implements IList{
 	@Override
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
+		//head只是个指针，不存数据的那种
 		return head.next() == null;
 	}
 
 	@Override
 	public boolean isInList() {
 		// TODO Auto-generated method stub
+		//不能是尾结点，因为插入删除什么的都是针对curr.next
 		return (curr != null) && (curr.next() != null);
 	}
 
