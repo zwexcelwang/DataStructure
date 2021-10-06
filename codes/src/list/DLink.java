@@ -13,6 +13,8 @@ public class DLink {
         next = n;
         prev = p;
     }
+
+
     public DLink next() {
         return next;
     }

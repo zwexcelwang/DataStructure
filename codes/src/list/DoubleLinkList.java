@@ -16,7 +16,7 @@ public class DoubleLinkList implements IList{
         setup();
     }
     private void setup() {
-        tail = head = curr = new DLink(null);
+        tail = head = curr = new DLink(null, null);
     }
 
     @Override
