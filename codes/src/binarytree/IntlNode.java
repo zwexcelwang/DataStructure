@@ -1,28 +1,32 @@
-package tree;
+package binarytree;
 
 /**
- * 叶子结点
+ * 分支结点
  * @author zui
  *
  */
-public class LeafNode implements BinNode{
-
-	private String var;	//Operand value
-	public LeafNode(String val) {
+public class IntlNode implements BinNode{
+	private Character opx;	//Operator value
+	private BinNode left;	//Pointer to left child
+	private BinNode right;	//Pointer to right child
+	
+	public IntlNode(Character op, BinNode l, BinNode r) {
 		// TODO Auto-generated constructor stub
-		var = val;
+		opx = op;
+		left = l;
+		right = r;
 	}
 	@Override
 	public Object element() {
 		// TODO Auto-generated method stub
-		return var;
+		return opx;
 	}
 
 	@Override
 	public Object setElement(Object item) {
 		// TODO Auto-generated method stub
-		var = (String)item;
-		return var;
+		opx = (Character)item;
+		return opx;
 	}
 
 	@Override
@@ -34,25 +38,27 @@ public class LeafNode implements BinNode{
 	@Override
 	public BinNode setLeft(BinNode binNode) {
 		// TODO Auto-generated method stub
-		return null;
+		left = binNode;
+		return left;
 	}
 
 	@Override
 	public BinNode right() {
 		// TODO Auto-generated method stub
-		return null;
+		return right;
 	}
 
 	@Override
 	public BinNode setRight(BinNode binNode) {
 		// TODO Auto-generated method stub
-		return null;
+		right = binNode;
+		return right;
 	}
 
 	@Override
 	public boolean isLeaf() {
 		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 }

@@ -1,4 +1,4 @@
-package tree;
+package binarytree;
 
 //ADT for binary tree nodes
 public interface BinNode {
