@@ -1,5 +1,8 @@
 package list;
 
+/**
+ * 链表
+ */
 public class LinkList implements IList{
 
 	private Link head;

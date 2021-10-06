@@ -1,9 +1,11 @@
 package list;
 
-
+/**
+ * 数组实现线性表,顺序表
+ */
 public class SeqList implements IList{
 	
-	private static final int defaultSize = 100;
+	private static final int defaultSize = 100;    //所能包含默认值
 	private int msize;	//所能包含的个数
 	private int numInList;	//实际元素个数
 	private int curr;	//记录当前元素位置
@@ -142,6 +144,7 @@ public class SeqList implements IList{
 			System.out.print("()");
 		}else {
 			System.out.print("(");
+			// for(初值；boolean；变化）
 			for(setFirst(); isInList(); next()) {
 				System.out.print(currValue() + " ");
 			}
