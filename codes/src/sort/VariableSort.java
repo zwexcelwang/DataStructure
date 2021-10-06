@@ -21,10 +21,16 @@ public class VariableSort {
 		
 		//System.out.println(binarySearch(arr5, 8, 0, array.length));
 	}
-	
+
+	/**
+	 * 冒泡排序
+	 * @param array
+	 * @return
+	 */
 	public static int[] BubbleSort(int[] array) {
 		for (int i=0; i<array.length-1; i++) {
 			for(int j=i; j<array.length-1; j++) {
+				//跟相邻的比较
 				if(array[j] > array[j+1]) {
 					int temp = array[j];
 					array[j] = array[j+1];
@@ -34,23 +40,34 @@ public class VariableSort {
 		}
 		return array;
 	}
-	
+
+	/**
+	 * 插入排序
+	 * @param array
+	 * @return
+	 */
 	public static int[] InsertSort(int[] array) {
 		for (int i=1; i<array.length-1; i++) {
 			int temp = array[i];
 			int j = i - 1;
+			// 要是比前面的小，那就不停的交换，直到到正确的位置
 			while(j >= 0 && array[j] > temp){
 				array[j + 1] = array[j];
 				j--;
 			}
+			// 最后停的位置
 			if(j != i - 1){
 				array[j + 1] = temp;		
 			}
-				
 		}
 		return array;
 	}
-	
+
+	/**
+	 * 选择排序
+	 * @param array
+	 * @return
+	 */
 	public static int[] SelectSort(int[] array) {
 		for (int i=0; i<array.length-1; i++) {
 			int minIndex = i;
@@ -59,6 +76,7 @@ public class VariableSort {
 					minIndex = j;
 				}
 			}
+			//选出最小的，做交换
 			if(minIndex != i) {
 				int temp = array[i];
 				array[i] = array[minIndex];
@@ -67,7 +85,12 @@ public class VariableSort {
 		}
 		return array;
 	}
-	
+
+	/**
+	 * 希尔排序，将序列分成子序列，对子序列分别排序，然后将子序列合并起来
+	 * @param array
+	 * @return
+	 */
 	public static int[] ShellSort(int[] array) {
 		
 		for (int step = array.length / 2; step > 0; step /= 2) {
@@ -88,10 +111,18 @@ public class VariableSort {
         }
         return array;
 	}
-	
+
+	/**
+	 * 快速排序
+	 * @param array
+	 * @param left
+	 * @param right
+	 * @return
+	 */
 	public static int[] QuickSort(int[] array, int left, int right){
 		int index = partition(array, left, right);
 		if(left < index - 1){
+			//index是最后返回的left值
 			QuickSort(array, left, index - 1);
 		}
 		if(index+1 < right){
@@ -107,7 +138,8 @@ public class VariableSort {
 		while(left < right){
 			while(array[left] < pivot) left++;
 			while(array[right] > pivot) right--;
-			
+
+			//在左边找到了比它大的，在右边找到了比它小的
 			if(left < right){
 				temp = array[left];
 				array[left] = array[right];
@@ -115,7 +147,7 @@ public class VariableSort {
 				left++;
 				right--;
 			}
-		}	
+		}
 		return left;
 	}
 
@@ -139,6 +171,13 @@ public class VariableSort {
         	array[i]=tmp[i];
     }
 
+	/**
+	 * 归并排序
+	 * @param array
+	 * @param start
+	 * @param end
+	 * @return
+	 */
     public static int[] mergeSort(int [] array,int start,int end){
         if(start < end){//当子序列中只有一个元素时结束递归
             int mid=(start + end)/2;//划分子序列
