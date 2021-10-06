@@ -2,8 +2,12 @@ package stack;
 
 import list.Link;
 
+/**
+ * 链式栈
+ */
 public class LinkStack {
 
+	//指向栈顶第一个结点的指针
 	private Link top;
 	public LinkStack() {
 		// TODO Auto-generated constructor stub
@@ -24,18 +28,20 @@ public class LinkStack {
 	}
 	
 	public void push(Object item) {
+		// 这个新加入的节点的next指向原来的top， 然后自己变成top
 		top = new Link(item, top);
 	}
 	
 	public Object pop() {
 		if(isEmpty()) {
 			System.out.print("Empty Stack");
+			return null;
 		}else {
 			Object item = top.element();
 			top = top.next();
 			return item;
 		}
-		return null;
+
 	}
 	
 	public Object topValue() {
