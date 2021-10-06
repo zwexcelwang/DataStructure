@@ -2,9 +2,12 @@ package queue;
 
 import list.Link;
 
+/**
+ * 链式队列
+ */
 public class LinkQueue {
-	private Link front;
-	private Link rear;
+	private Link front;		//表示队首元素的指针
+	private Link rear;		//表示队尾元素的指针
 	
 	public LinkQueue() {
 		// TODO Auto-generated constructor stub
@@ -42,6 +45,7 @@ public class LinkQueue {
 		}else {
 			Object item = front.element();
 			front = front.next();
+			//考虑只有一个元素的情况
 			if(front == null) {
 				rear = null;
 			}
